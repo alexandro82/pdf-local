@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>PDF Local</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== Design Tokens ===== */
+  :root {
+    --surface: #F8FAFC;
+    --surface-container-lowest: #FFFFFF;
+    --surface-container-low: #F1F5F9;
+    --surface-container: #E2E8F0;
+    --surface-container-high: #CBD5E1;
+    --surface-container-highest: #94A3B8;
+    --on-surface: #0F172A;
+    --on-surface-variant: #475569;
+    --primary: #E11D48;
+    --on-primary: #FFFFFF;
+    --primary-fixed: #FFE4E6;
+    --primary-fixed-dim: #FFB4C0;
+    --on-primary-fixed: #9E1032;
+    --on-primary-fixed-variant: #BE123C;
+    --secondary: #10B981;
+    --on-secondary: #FFFFFF;
+    --secondary-container: #D1FAE5;
+    --on-secondary-container: #065F46;
+    --tertiary: #64748B;
+    --on-tertiary: #FFFFFF;
+    --tertiary-container: #94A3B8;
+    --on-tertiary-container: #F8FAFC;
+    --error: #DC2626;
+    --on-error: #FFFFFF;
+    --error-container: #FEE2E2;
+    --on-error-container: #991B1B;
+    --outline: #CBD5E1;
+    --outline-variant: #E2E8F0;
+    --bg: #F8FAFC;
+
+    /* Typography */
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Spacing (8pt grid) */
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --margin-mobile: 1rem;
+    --gutter-mobile: 0.75rem;
+
+    /* Shapes */
+    --rounded-sm: 0.25rem;
+    --rounded: 0.5rem;
+    --rounded-md: 0.75rem;
+    --rounded-lg: 1rem;
+    --rounded-xl: 1.5rem;
+    --rounded-full: 9999px;
+
+    /* Elevation */
+    --shadow-sm: 0 1px 3px 0 rgba(15,23,42,0.04), 0 1px 2px -1px rgba(15,23,42,0.02);
+    --shadow-md: 0 4px 6px -1px rgba(15,23,42,0.06), 0 2px 4px -2px rgba(15,23,42,0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(15,23,42,0.06), 0 4px 6px -4px rgba(15,23,42,0.03);
+  }
+
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.43;
+    color: var(--on-surface);
+    background: var(--bg);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Typography ===== */
+  .display-lg { font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 34px; letter-spacing: -0.025em; }
+  .headline-lg { font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 32px; letter-spacing: -0.02em; }
+  .headline-md { font-family: var(--font-display); font-size: 20px; font-weight: 600; line-height: 28px; letter-spacing: -0.015em; }
+  .headline-sm { font-family: var(--font-display); font-size: 16px; font-weight: 600; line-height: 24px; letter-spacing: -0.01em; }
+  .body-lg { font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 24px; }
+  .body-md { font-family: var(--font-body); font-size: 14px; font-weight: 400; line-height: 20px; }
+  .body-sm { font-family: var(--font-body); font-size: 12px; font-weight: 400; line-height: 16px; }
+  .label-lg { font-family: var(--font-body); font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: 0.01em; }
+  .label-md { font-family: var(--font-body); font-size: 12px; font-weight: 500; line-height: 16px; letter-spacing: 0.02em; }
+  .label-sm { font-family: var(--font-body); font-size: 11px; font-weight: 600; line-height: 14px; letter-spacing: 0.04em; }
+  .code-mono { font-family: var(--font-mono); font-size: 12px; font-weight: 500; line-height: 16px; }
+
+  /* ===== Header ===== */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(248,250,252,0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    height: 4rem;
+    display: flex; align-items: center;
+    padding: 0 var(--margin-mobile);
+    gap: var(--space-xs);
+  }
+  .header-logo { height: 2rem; width: auto; flex-shrink: 0; }
+  .header-title { min-width: 0; }
+  .header-title h1 { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .header-subtitle { font-size: 11px; font-weight: 600; color: var(--tertiary); letter-spacing: 0.04em; }
+  .header-actions { display: flex; align-items: center; gap: var(--space-xs); margin-left: auto; flex-shrink: 0; }
+
+  /* ===== Privacy Badge ===== */
+  .privacy-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--rounded-full);
+    background: rgba(210,244,230,0.5);
+    border: 1px solid rgba(167,243,208,0.6);
+    color: var(--on-secondary-container);
+  }
+  .privacy-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--secondary);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ===== Main Content ===== */
+  .main {
+    padding-top: 4rem;
+    padding-bottom: var(--space-lg);
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+    min-height: 100dvh;
+  }
+
+
+  /* ===== Cards ===== */
+  .card {
+    background: var(--surface-container-lowest);
+    border-radius: var(--rounded-xl);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ===== Privacy Banner ===== */
+  .privacy-banner {
+    background: rgba(210,244,230,0.3);
+    border-radius: var(--rounded-xl);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .privacy-banner::after {
+    content: '';
+    position: absolute; top: -1rem; right: -1rem;
+    width: 6rem; height: 6rem;
+    background: rgba(210,244,230,0.5);
+    border-radius: 50%;
+    filter: blur(2rem);
+    pointer-events: none;
+  }
+  .privacy-banner .icon-wrap {
+    width: 2.5rem; height: 2.5rem;
+    border-radius: var(--rounded-md);
+    background: rgba(16,185,129,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--secondary);
+    flex-shrink: 0;
+  }
+
+
+  /* ===== Search ===== */
+  .search-wrap { position: relative; width: 100%; }
+  .search-wrap .search-icon {
+    position: absolute; top: 50%; left: 1rem; transform: translateY(-50%);
+    color: var(--tertiary); pointer-events: none;
+  }
+  .search-input {
+    width: 100%; padding: 0.75rem 2.5rem 0.75rem 2.75rem;
+    border-radius: var(--rounded-md);
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--outline-variant);
+    color: var(--on-surface);
+    font: inherit; font-size: 14px;
+    box-shadow: var(--shadow-sm);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input::placeholder { color: var(--tertiary); }
+  .search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(225,29,72,0.15);
+  }
+  .search-clear {
+    position: absolute; top: 50%; right: 0.75rem; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    color: var(--tertiary); display: flex; align-items: center;
+  }
+  .search-clear.hidden { display: none; }
+
+  /* ===== Filter Pills ===== */
+  .filter-pills {
+    display: flex; align-items: center; gap: var(--space-2xs);
+    overflow-x: auto; padding-bottom: 4px;
+  }
+  .filter-pills::-webkit-scrollbar { display: none; }
+  .filter-pill {
+    padding: 6px 12px;
+    border-radius: var(--rounded-full);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+    white-space: nowrap;
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+    background: var(--surface-container-low);
+    color: var(--tertiary);
+  }
+  .filter-pill:hover { color: var(--on-surface); }
+  .filter-pill.active {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ===== Category Sections ===== */
+  .category-section {
+    display: flex; flex-direction: column; gap: var(--space-sm);
+  }
+  .category-header {
+    display: flex; align-items: center; gap: var(--space-xs);
+    padding: var(--space-sm) 0 0;
+  }
+  .category-header .cat-icon {
+    width: 2rem; height: 2rem;
+    border-radius: var(--rounded-sm);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .category-header h2 {
+    font-family: var(--font-display);
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .category-header .cat-count {
+    font-size: 11px; font-weight: 600;
+    color: var(--tertiary);
+    margin-left: auto;
+  }
+
+  /* ===== Tools Grid ===== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  @media (min-width: 640px) {
+    .tools-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .tool-card {
+    position: relative;
+    background: var(--surface-container-lowest);
+    border-radius: var(--rounded-xl);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column; justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tool-card:hover { box-shadow: var(--shadow-md); }
+  .tool-card:active { transform: scale(0.98); }
+  .tool-card .icon-wrap {
+    width: 2.5rem; height: 2.5rem;
+    border-radius: var(--rounded-md);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .tool-card:hover .icon-wrap {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+  }
+  .tool-card .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--rounded-full);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .tool-card h3 {
+    font-family: var(--font-display);
+    font-size: 16px; font-weight: 600;
+    line-height: 1.25; margin-bottom: 4px;
+  }
+  .tool-card p {
+    font-size: 12px; color: var(--tertiary);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  /* ===== Tool Detail View ===== */
+  .tool-detail { display: none; }
+  .tool-detail.active { display: block; }
+  .tools-home.hidden { display: none; }
+
+  /* ===== Back Button ===== */
+  .back-btn {
+    width: 2.75rem; height: 2.75rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: var(--rounded-md);
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: var(--surface-container-high); }
+  .back-btn:active { transform: scale(0.95); }
+
+  /* ===== Dropzone ===== */
+  .dropzone {
+    border: 2px dashed var(--outline-variant);
+    border-radius: var(--rounded-lg);
+    padding: 2rem;
+    text-align: center;
+    color: var(--tertiary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dropzone.over {
+    border-color: var(--primary);
+    background: rgba(255,180,192,0.15);
+  }
+
+  /* ===== File List ===== */
+  .file-list { list-style: none; padding: 0; margin: var(--space-md) 0 0; }
+  .file-item {
+    display: flex; align-items: center; gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--rounded);
+    margin-bottom: 6px;
+    background: #FAFBFC;
+    height: 2.5rem;
+  }
+  .file-item.drag { opacity: 0.4; }
+  .file-item .drag-handle { cursor: grab; color: var(--tertiary); flex-shrink: 0; }
+  .file-item .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+  .file-item .file-size { color: var(--tertiary); font-size: 12px; flex-shrink: 0; }
+  .file-item button {
+    border: 0; background: none; color: var(--tertiary);
+    cursor: pointer; font-size: 18px; padding: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ===== Fields ===== */
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+  .fields label {
+    display: block; font-size: 13px; color: var(--tertiary);
+  }
+  .fields input, .fields select {
+    width: 100%; padding: 8px 12px;
+    border: 1px solid var(--outline);
+    border-radius: var(--rounded-md);
+    font: inherit; font-size: 14px;
+    margin-top: 4px;
+    background: var(--surface-container-lowest);
+    color: var(--on-surface);
+    outline: none;
+    height: 2.75rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .fields input:focus, .fields select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(225,29,72,0.15);
+  }
+
+  /* ===== Buttons ===== */
+  .btn-primary {
+    margin-top: var(--space-lg);
+    background: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    padding: 0.625rem 1.5rem;
+    border-radius: var(--rounded-md);
+    font: inherit; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    height: 3rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2xs);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--on-primary-fixed-variant); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.5; cursor: wait; }
+
+  .btn-secondary {
+    padding: 0.5rem var(--space-md);
+    border-radius: var(--rounded-md);
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    border: 1px solid var(--outline-variant);
+    font: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2xs);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--surface-container); }
+
+  /* ===== Messages ===== */
+  .msg { margin-top: var(--space-md); min-height: 22px; font-size: 14px; }
+  .msg.err { color: var(--error); }
+  .msg.ok { color: var(--secondary); }
+
+  /* ===== Desc ===== */
+  .desc { color: var(--tertiary); margin: 0 0 var(--space-md); font-size: 14px; }
+
+  /* ===== No Results ===== */
+  .no-results {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    padding: var(--space-xl) var(--space-md);
+    text-align: center;
+    background: var(--surface-container-lowest);
+    border-radius: var(--rounded-xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .no-results.visible { display: flex; }
+
+  /* ===== Metrics Footer ===== */
+  .metrics-footer {
+    background: var(--surface-container-low);
+    border-radius: var(--rounded-xl);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* ===== Utility ===== */
+  .hidden { display: none !important; }
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* ===== Material Icons ===== */
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="header">
+  <button class="back-btn hidden" id="backBtn" aria-label="Volver">
+    <span class="material-symbols-outlined" style="font-size:20px">arrow_back</span>
+  </button>
+  <div class="header-title" style="min-width:0;flex:1">
+    <h1 id="headerTitle">PDF Local</h1>
+    <div class="header-subtitle" id="headerSubtitle">Herramientas</div>
+  </div>
+  <div class="header-actions">
+    <div class="privacy-badge">
+      <span class="dot"></span>
+      <span class="label-sm">100% Local</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Main ===== -->
+<main class="main">
+
+  <!-- ===== Tools Home ===== -->
+  <div class="tools-home" id="toolsHome">
+    <div style="display:flex;flex-direction:column;gap:var(--space-md)">
+
+      <!-- Privacy Banner -->
+      <section class="privacy-banner">
+        <div style="display:flex;align-items:flex-start;gap:var(--space-sm);position:relative;z-index:1">
+          <div class="icon-wrap">
+            <span class="material-symbols-outlined" style="font-size:24px;font-variation-settings:'FILL' 1">verified_user</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:var(--space-2xs);margin-bottom:4px">
+              <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--rounded-full);background:var(--secondary);color:var(--on-secondary);font-size:11px;font-weight:600;letter-spacing:0.04em">
+                <span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 2s infinite;display:inline-block"></span>
+                Offline seguro
+              </span>
+              <span class="code-mono" style="color:var(--secondary);font-weight:500">Sandboxed</span>
+            </div>
+            <p class="body-sm" style="font-weight:500;line-height:1.625">
+              Procesamiento 100% en tu dispositivo. Ningún archivo o dato se sube a internet ni a servidores externos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Search & Filters -->
+      <section style="display:flex;flex-direction:column;gap:var(--space-sm)">
+        <div class="search-wrap">
+          <span class="material-symbols-outlined search-icon" style="font-size:20px">search</span>
+          <input class="search-input" id="toolSearchInput" placeholder="Buscar herramienta (ej. unir, comprimir...)" type="text" autocomplete="off">
+          <button class="search-clear hidden" id="clearSearchBtn" aria-label="Limpiar búsqueda">
+            <span class="material-symbols-outlined" style="font-size:18px">cancel</span>
+          </button>
+        </div>
+        <div class="filter-pills" id="categoryFilterContainer">
+          <button class="filter-pill active" data-category="all" type="button">Todos</button>
+          <button class="filter-pill" data-category="organizar" type="button">Organizar</button>
+          <button class="filter-pill" data-category="optimizar" type="button">Optimizar</button>
+          <button class="filter-pill" data-category="seguridad" type="button">Seguridad</button>
+          <button class="filter-pill" data-category="convertir" type="button">Convertir</button>
+          <button class="filter-pill" data-category="editar" type="button">Editar</button>
+          <button class="filter-pill" data-category="utilidades" type="button">Utilidades</button>
+        </div>
+      </section>
+
+      <!-- Tools by Category -->
+      <div id="toolsContainer"></div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noResultsState">
+        <div style="width:3.5rem;height:3.5rem;border-radius:50%;background:var(--surface-container-high);color:var(--tertiary);display:flex;align-items:center;justify-content;margin-bottom:var(--space-sm)">
+          <span class="material-symbols-outlined" style="font-size:30px">manage_search</span>
+        </div>
+        <h4 class="headline-sm" style="margin-bottom:4px">No se encontraron herramientas</h4>
+        <p class="body-sm" style="color:var(--tertiary);max-width:20rem;margin-bottom:var(--space-md)">
+          Prueba con otros términos como 'unir', 'cifrar', 'rotar' o limpia el filtro actual.
+        </p>
+        <button class="btn-secondary" id="resetFilterBtn" type="button">Restablecer filtros</button>
+      </div>
+
+      <!-- Metrics Footer -->
+      <section class="metrics-footer">
+        <div style="display:flex;align-items:center;gap:var(--space-xs)">
+          <span class="material-symbols-outlined" style="color:var(--secondary);font-size:20px">memory</span>
+          <div>
+            <span class="label-sm" style="color:var(--tertiary)">Motor Local</span>
+            <div class="code-mono" style="font-weight:600">pypdf + Ghostscript</div>
+          </div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--rounded-full);background:var(--surface-container-lowest)">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--secondary)"></span>
+          <span class="label-sm" style="font-weight:500">Listo</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ===== Tool Detail ===== -->
+  <div class="tool-detail" id="toolDetail">
+    <div style="display:flex;flex-direction:column;gap:var(--space-md)">
+      <div class="card">
+        <p class="desc" id="desc"></p>
+        <div class="dropzone" id="drop">
+          <span class="material-symbols-outlined" style="font-size:48px;color:var(--outline)">cloud_upload</span>
+          <p style="margin-top:var(--space-sm)">Arrastra aquí los archivos o haz clic para elegirlos</p>
+        </div>
+        <input type="file" id="inp" hidden>
+        <ul class="file-list" id="list"></ul>
+        <div class="fields" id="fields"></div>
+        <button class="btn-primary" id="go">
+          <span class="material-symbols-outlined" style="font-size:18px">play_arrow</span>
+          Procesar
+        </button>
+        <div class="msg" id="msg"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<script>
+const PDF = ".pdf", IMG = ".jpg,.jpeg,.png,.webp,.bmp,.gif";
+const pw = {name:"password", label:"Contraseña del PDF (solo si está protegido)", type:"password"};
+
+const TOOLS = {
+  merge:{label:"Unir PDFs", desc:"Une varios PDF en uno. Arrástralos para cambiar el orden.", accept:PDF, multiple:true, fields:[pw],
+    category:"organizar", icon:"call_merge", badge:"Más usado", badgeColor:"primary", iconBg:"primary-fixed/60", keywords:"unir pdfs fusionar combinar juntar"},
+  split:{label:"Dividir / Extraer", desc:"Separa un PDF o extrae páginas. Rangos de ejemplo: 1-3,5,7-", accept:PDF, fields:[
+    {name:"mode", label:"Modo", type:"select", options:[["each","Una página por archivo (ZIP)"],["ranges","Cada rango en un archivo (ZIP)"],["extract","Extraer páginas en un solo PDF"]]},
+    {name:"pages", label:"Páginas / rangos", placeholder:"1-3,5,7-"}, pw],
+    category:"organizar", icon:"content_cut", badge:"Páginas", iconBg:"surface-container-high", keywords:"dividir extraer separar cortar paginas"},
+  rotate:{label:"Rotar Páginas", desc:"Rota todas las páginas o solo las que indiques.", accept:PDF, fields:[
+    {name:"angle", label:"Ángulo", type:"select", options:[["90","90° derecha"],["180","180°"],["270","90° izquierda"]]},
+    {name:"pages", label:"Páginas (vacío = todas)", placeholder:"1,3-5"}, pw],
+    category:"organizar", icon:"rotate_right", badge:"90° / 180°", iconBg:"surface-container-high", keywords:"rotar girar orientacion horizontal vertical 90 180"},
+  compress:{label:"Comprimir", desc:"Reduce el tamaño con Ghostscript.", accept:PDF, fields:[
+    {name:"level", label:"Nivel", type:"select", options:[["ebook","Equilibrado"],["screen","Máxima compresión"],["printer","Buena calidad"]]}],
+    category:"optimizar", icon:"compress", badge:"-80% peso", badgeColor:"secondary", iconBg:"secondary-container", keywords:"comprimir reducir tamaño peso mb kb optimizar"},
+  watermark:{label:"Marca de Agua", desc:"Agrega un texto diagonal en todas las páginas.", accept:PDF, fields:[
+    {name:"text", label:"Texto", placeholder:"CONFIDENCIAL"}, {name:"size", label:"Tamaño", type:"number", value:60},
+    {name:"opacity", label:"Opacidad (0 a 1)", type:"number", value:0.25, step:0.05}, pw],
+    category:"seguridad", icon:"branding_watermark", badge:"Texto/Logo", iconBg:"surface-container-high", keywords:"marca de agua sello watermark texto logo diagonal"},
+  numbers:{label:"Numerar Páginas", desc:"Agrega «1 / N» al pie de cada página.", accept:PDF, fields:[pw],
+    category:"organizar", icon:"format_list_numbered", badge:"Folios", iconBg:"surface-container-high", keywords:"numerar paginas folio indices 123 pie de pagina"},
+  protect:{label:"Proteger Clave", desc:"Cifra el PDF con contraseña.", accept:PDF, fields:[
+    {name:"newpassword", label:"Nueva contraseña", type:"password"}, pw],
+    category:"seguridad", icon:"lock", badge:"AES-256", badgeStyle:"font-family:var(--font-mono)", iconBg:"primary-fixed/40", keywords:"proteger contrasena cifrado aes clave bloquear seguridad"},
+  unlock:{label:"Desbloquear", desc:"Quita la contraseña (necesitas conocerla).", accept:PDF, fields:[
+    {name:"password", label:"Contraseña actual", type:"password"}],
+    category:"seguridad", icon:"lock_open", badge:"Desencriptar", iconBg:"surface-container-high", keywords:"desbloquear quitar contrasena abrir remover proteccion"},
+  images2pdf:{label:"Imágenes → PDF", desc:"Convierte imágenes en un PDF, en el orden de la lista.", accept:IMG, multiple:true, fields:[],
+    category:"convertir", icon:"photo_library", badge:"JPG / PNG", iconBg:"surface-container-high", keywords:"imagenes a pdf jpg png foto convertir crear"},
+  pdf2images:{label:"PDF → Imágenes", desc:"Exporta cada página como imagen (ZIP).", accept:PDF, fields:[
+    {name:"format", label:"Formato", type:"select", options:[["png","PNG"],["jpg","JPG"]]},
+    {name:"dpi", label:"Resolución (DPI)", type:"number", value:150}],
+    category:"convertir", icon:"image", badge:"Exportar", iconBg:"surface-container-high", keywords:"pdf a imagenes exportar png jpg extraer fotos"},
+
+  // --- PDF extraction tools ---
+  pdf2word:{label:"PDF → Word", desc:"Extrae el texto del PDF y lo guarda como documento Word (DOCX).", accept:PDF, fields:[pw],
+    category:"convertir", icon:"edit_document", badge:"DOCX", iconBg:"secondary-container", keywords:"pdf a word docx extraer texto documento editable"},
+  pdf2txt:{label:"PDF → TXT", desc:"Extrae todo el texto del PDF como archivo de texto plano.", accept:PDF, fields:[pw],
+    category:"convertir", icon:"notes", badge:"Texto", iconBg:"surface-container-high", keywords:"pdf a texto plano extraer txt"},
+  pdf2html:{label:"PDF → HTML", desc:"Convierte el contenido del PDF a una página HTML.", accept:PDF, fields:[pw],
+    category:"convertir", icon:"code", badge:"HTML", iconBg:"surface-container-high", keywords:"pdf a html pagina web convertir"},
+
+  // --- Office → PDF tools ---
+  docx2pdf:{label:"Word → PDF", desc:"Convierte un documento Word a PDF (requiere LibreOffice).", accept:".docx,.doc", fields:[],
+    category:"convertir", icon:"article", badge:"LibreOffice", iconBg:"surface-container-high", keywords:"word a pdf docx convertir documento"},
+  xlsx2pdf:{label:"Excel → PDF", desc:"Convierte una hoja de cálculo Excel a PDF (requiere LibreOffice).", accept:".xlsx,.xls", fields:[],
+    category:"convertir", icon:"table_chart", badge:"LibreOffice", iconBg:"surface-container-high", keywords:"excel a pdf xlsx convertir hoja calculo"},
+  pptx2pdf:{label:"PowerPoint → PDF", desc:"Convierte una presentación PowerPoint a PDF (requiere LibreOffice).", accept:".pptx,.ppt", fields:[],
+    category:"convertir", icon:"slideshow", badge:"LibreOffice", iconBg:"surface-container-high", keywords:"powerpoint a pdf pptx convertir presentacion"},
+
+  // --- Editing tools ---
+  crop:{label:"Recortar PDF", desc:"Elimina márgenes o recorta un área de cada página (en puntos).", accept:PDF, fields:[
+    {name:"top", label:"Margen superior (pt)", type:"number", value:0},
+    {name:"bottom", label:"Margen inferior (pt)", type:"number", value:0},
+    {name:"left", label:"Margen izquierdo (pt)", type:"number", value:0},
+    {name:"right", label:"Margen derecho (pt)", type:"number", value:0}, pw],
+    category:"editar", icon:"crop", badge:"Márgenes", iconBg:"surface-container-high", keywords:"recortar cortar margenes area crop"},
+  delete_pages:{label:"Eliminar páginas", desc:"Borra las páginas que indiques del PDF.", accept:PDF, fields:[
+    {name:"pages", label:"Páginas a eliminar", placeholder:"2,4-6"}, pw],
+    category:"editar", icon:"delete", badge:"Borrar", iconBg:"surface-container-high", keywords:"eliminar borrar quitar paginas"},
+  reorder:{label:"Ordenar páginas", desc:"Une varios PDF en un solo archivo. Arrastra los archivos para cambiar el orden.", accept:PDF, multiple:true, fields:[pw],
+    category:"editar", icon:"sort", badge:"Reordenar", iconBg:"surface-container-high", keywords:"ordenar reordenar mover paginas cambiar"},
+  redact:{label:"Censurar PDF", desc:"Oculta el contenido de las páginas indicadas con un rectángulo negro.", accept:PDF, fields:[
+    {name:"pages", label:"Páginas a censurar", placeholder:"1,3-5"}, pw],
+    category:"editar", icon:"redact", badge:"Ocultar", iconBg:"surface-container-high", keywords:"censurar redactar ocultar negro bloquear"},
+
+  // --- Security tools ---
+  change_password:{label:"Cambiar contraseña", desc:"Cambia la contraseña de un PDF ya protegido.", accept:PDF, fields:[
+    {name:"password", label:"Contraseña actual", type:"password"},
+    {name:"newpassword", label:"Nueva contraseña", type:"password"}],
+    category:"seguridad", icon:"password", badge:"Re-cifrar", iconBg:"primary-fixed/40", keywords:"cambiar contrasena modificar clave actualizar"},
+  strip_metadata:{label:"Eliminar metadatos", desc:"Limpia autor, título, software y otros metadatos del PDF.", accept:PDF, fields:[pw],
+    category:"seguridad", icon:"visibility_off", badge:"Privacidad", iconBg:"surface-container-high", keywords:"eliminar metadatos autor titulo privacidad limpiar"},
+
+  // --- Utility tools ---
+  repair:{label:"Reparar PDF", desc:"Intenta recuperar un PDF dañado reescribiendo su contenido.", accept:PDF, fields:[],
+    category:"utilidades", icon:"build", badge:"Recuperar", iconBg:"surface-container-high", keywords:"reparar recuperar corregir dañado corrupto"},
+};
+
+const $ = s => document.querySelector(s);
+let cur = null, files = [], dragIdx = null;
+
+/* ===== Category Metadata ===== */
+const CATEGORIES = {
+  organizar:   { label: "Organizar",   icon: "folder_zip",  bg: "background:rgba(255,228,230,0.5);color:var(--primary)" },
+  optimizar:   { label: "Optimizar",   icon: "speed",       bg: "background:rgba(209,250,229,0.5);color:var(--secondary)" },
+  seguridad:   { label: "Seguridad",   icon: "shield",      bg: "background:rgba(255,228,230,0.4);color:var(--primary)" },
+  convertir:   { label: "Convertir",   icon: "swap_horiz",  bg: "background:var(--surface-container-high);color:var(--on-surface)" },
+  editar:      { label: "Editar",      icon: "edit",        bg: "background:var(--surface-container-high);color:var(--on-surface)" },
+  utilidades:  { label: "Utilidades",  icon: "construction",bg: "background:var(--surface-container-high);color:var(--on-surface)" },
+};
+
+/* ===== Build a single tool card ===== */
+function createToolCard(key, t) {
+  const card = document.createElement("div");
+  card.className = "tool-card";
+  card.setAttribute("data-category", t.category);
+  card.setAttribute("data-title", t.keywords);
+  card.onclick = () => openTool(key);
+
+  let iconBg = "";
+  if (t.iconBg === "primary-fixed/60") iconBg = "background:rgba(255,228,230,0.6);color:var(--primary)";
+  else if (t.iconBg === "primary-fixed/40") iconBg = "background:rgba(255,228,230,0.4);color:var(--primary)";
+  else if (t.iconBg === "secondary-container") iconBg = "background:rgba(209,250,229,0.5);color:var(--secondary)";
+  else iconBg = "background:var(--surface-container-high);color:var(--on-surface)";
+
+  let badgeStyle = "";
+  if (t.badgeColor === "primary") badgeStyle = "background:var(--primary);color:var(--on-primary)";
+  else if (t.badgeColor === "secondary") badgeStyle = "background:var(--secondary-container);color:var(--secondary)";
+  else if (t.badgeStyle) badgeStyle = t.badgeStyle + ";background:var(--surface-container-high);color:var(--on-surface)";
+  else badgeStyle = "background:var(--surface-container-low);color:var(--tertiary)";
+
+  card.innerHTML = `
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-2xs);margin-bottom:var(--space-sm)">
+      <div class="icon-wrap" style="${iconBg}">
+        <span class="material-symbols-outlined" style="font-size:24px">${t.icon}</span>
+      </div>
+      <span class="badge" style="${badgeStyle}">${t.badge}</span>
+    </div>
+    <div>
+      <h3>${t.label}</h3>
+      <p>${t.desc.split('.')[0]}</p>
+    </div>
+  `;
+  return card;
+}
+
+/* ===== Build Tools Grid grouped by Category ===== */
+function buildGrid() {
+  const container = $("#toolsContainer");
+  container.innerHTML = "";
+
+  // Group tools by category
+  const groups = {};
+  for (const [key, t] of Object.entries(TOOLS)) {
+    if (!groups[t.category]) groups[t.category] = [];
+    groups[t.category].push([key, t]);
+  }
+
+  // Render each category section
+  for (const [cat, tools] of Object.entries(groups)) {
+    const catMeta = CATEGORIES[cat] || { label: cat, icon: "category", bg: "background:var(--surface-container-high);color:var(--on-surface)" };
+
+    // Section wrapper
+    const section = document.createElement("div");
+    section.className = "category-section";
+    section.setAttribute("data-category-section", cat);
+
+    // Header
+    const header = document.createElement("div");
+    header.className = "category-header";
+    header.innerHTML = `
+      <div class="cat-icon" style="${catMeta.bg}">
+        <span class="material-symbols-outlined" style="font-size:20px">${catMeta.icon}</span>
+      </div>
+      <h2 style="color:var(--on-surface)">${catMeta.label}</h2>
+      <span class="cat-count">${tools.length} herramientas</span>
+    `;
+    section.appendChild(header);
+
+    // Grid
+    const grid = document.createElement("div");
+    grid.className = "tools-grid";
+    for (const [key, t] of tools) {
+      grid.appendChild(createToolCard(key, t));
+    }
+    section.appendChild(grid);
+    container.appendChild(section);
+  }
+}
+
+/* ===== Open Tool Detail ===== */
+function openTool(key) {
+  cur = key;
+  files = [];
+  const t = TOOLS[key];
+
+  // UI switch
+  $("#toolsHome").classList.add("hidden");
+  $("#toolDetail").classList.add("active");
+  $("#backBtn").classList.remove("hidden");
+  $("#headerSubtitle").textContent = t.label;
+
+  // Build fields
+  $("#desc").textContent = t.desc;
+  $("#msg").textContent = "";
+  $("#inp").accept = t.accept;
+  $("#inp").multiple = !!t.multiple;
+
+  $("#fields").innerHTML = t.fields.map(f => {
+    const id = "f_" + f.name;
+    const ac = f.type === "password" ? "new-password" : "off";
+    const ctl = f.type === "select"
+      ? `<select id="${id}">${f.options.map(o => `<option value="${o[0]}">${o[1]}</option>`).join("")}</select>`
+      : `<input id="${id}" type="${f.type || "text"}" value="${f.value ?? ""}" step="${f.step ?? ""}" placeholder="${f.placeholder ?? ""}" autocomplete="${ac}" autocorrect="off" spellcheck="false">`;
+    return `<label>${f.label}${ctl}</label>`;
+  }).join("");
+  list();
+}
+
+/* ===== Back to Home ===== */
+function goHome() {
+  cur = null;
+  files = [];
+  $("#toolsHome").classList.remove("hidden");
+  $("#toolDetail").classList.remove("active");
+  $("#backBtn").classList.add("hidden");
+  $("#headerSubtitle").textContent = "Herramientas";
+  $("#msg").textContent = "";
+}
+
+$("#backBtn").onclick = goHome;
+
+/* ===== File List ===== */
+function size(b) { return b > 1e6 ? (b / 1e6).toFixed(1) + " MB" : Math.ceil(b / 1e3) + " KB"; }
+function list() {
+  const ul = $("#list"); ul.innerHTML = "";
+  files.forEach((f, i) => {
+    const li = document.createElement("li");
+    li.className = "file-item";
+    li.draggable = !!TOOLS[cur].multiple;
+    li.innerHTML = `<span class="drag-handle material-symbols-outlined" style="font-size:20px">drag_indicator</span>
+      <span class="file-name">${f.name}</span>
+      <span class="file-size code-mono">${size(f.size)}</span>
+      <button title="Quitar"><span class="material-symbols-outlined" style="font-size:18px">close</span></button>`;
+    li.querySelector("button").onclick = () => { files.splice(i, 1); list(); };
+    li.ondragstart = () => { dragIdx = i; li.classList.add("drag"); };
+    li.ondragend = () => li.classList.remove("drag");
+    li.ondragover = e => e.preventDefault();
+    li.ondrop = e => { e.preventDefault(); e.stopPropagation(); if (dragIdx === null) return;
+      files.splice(i, 0, files.splice(dragIdx, 1)[0]); dragIdx = null; list(); };
+    ul.append(li);
+  });
+}
+
+/* ===== Add Files ===== */
+function add(fl) {
+  const t = TOOLS[cur], ok = t.accept.split(",");
+  const good = [...fl].filter(f => ok.some(e => f.name.toLowerCase().endsWith(e)));
+  files = t.multiple ? files.concat(good) : good.slice(0, 1);
+  list();
+}
+
+/* ===== Dropzone ===== */
+const drop = $("#drop");
+drop.onclick = () => $("#inp").click();
+$("#inp").onchange = e => { add(e.target.files); e.target.value = ""; };
+drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+drop.ondragleave = () => drop.classList.remove("over");
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files.length) add(e.dataTransfer.files); };
+
+
+/* ===== Process ===== */
+$("#go").onclick = async () => {
+  const msg = $("#msg"), btn = $("#go");
+  if (!files.length) { msg.className = "msg err"; msg.textContent = "Agrega al menos un archivo."; return; }
+  const fd = new FormData();
+  files.forEach(f => fd.append("files", f));
+  TOOLS[cur].fields.forEach(f => fd.append(f.name, $("#f_" + f.name).value));
+  btn.disabled = true; msg.className = "msg"; msg.textContent = "Procesando…";
+  try {
+    const r = await fetch("/api/" + cur, { method: "POST", body: fd });
+    if (!r.ok) throw new Error((await r.json()).error || "Error desconocido");
+    const name = (/filename="?([^";]+)"?/.exec(r.headers.get("Content-Disposition") || "") || [])[1] || "resultado";
+    const blob = await r.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name; a.click();
+    msg.className = "msg ok"; msg.textContent = `Listo: ${name} (${size(blob.size)})`;
+  } catch (e) { msg.className = "msg err"; msg.textContent = e.message; }
+  btn.disabled = false;
+};
+
+/* ===== Search & Filter ===== */
+(function() {
+  const searchInput = $("#toolSearchInput");
+  const clearBtn = $("#clearSearchBtn");
+  const filterButtons = document.querySelectorAll('.filter-pill');
+  const noResults = $("#noResultsState");
+  const resetBtn = $("#resetFilterBtn");
+  let activeCategory = 'all';
+
+  function filterTools() {
+    const query = (searchInput.value || '').trim().toLowerCase();
+    let visibleCount = 0;
+    clearBtn.classList.toggle('hidden', query.length === 0);
+
+    // Get all category sections
+    const sections = document.querySelectorAll('.category-section');
+    sections.forEach(section => {
+      const cat = section.getAttribute('data-category-section');
+      const cards = section.querySelectorAll('.tool-card');
+      let sectionVisibleCards = 0;
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        const keywords = card.getAttribute('data-title').toLowerCase();
+        const matchesCat = (activeCategory === 'all') || (cardCat === activeCategory);
+        const matchesQuery = !query || keywords.includes(query);
+        if (matchesCat && matchesQuery) {
+          card.classList.remove('hidden');
+          sectionVisibleCards++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Show/hide entire section based on visible cards
+      if (sectionVisibleCards > 0) {
+        section.classList.remove('hidden');
+        visibleCount += sectionVisibleCards;
+      } else {
+        section.classList.add('hidden');
+      }
+    });
+
+    noResults.classList.toggle('visible', visibleCount === 0);
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.getAttribute('data-category');
+      filterTools();
+    });
+  });
+
+  searchInput.addEventListener('input', filterTools);
+  clearBtn.addEventListener('click', () => { searchInput.value = ''; filterTools(); searchInput.focus(); });
+  resetBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    activeCategory = 'all';
+    filterButtons.forEach((b, i) => b.classList.toggle('active', i === 0));
+    filterTools();
+  });
+})();
+
+/* ===== Init ===== */
+buildGrid();
+</script>
+</body>
+</html>

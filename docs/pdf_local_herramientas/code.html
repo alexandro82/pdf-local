@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed": "#40000c", "surface-container-low": "#eff4ff", "tertiary-fixed-dim": "#bec6e0", "primary": "#b80035", "on-tertiary-fixed-variant": "#3f465c", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#005236", "surface-container-high": "#dce9ff", "background": "#f8f9ff", "secondary-fixed-dim": "#4edea3", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "primary-container": "#e11d48", "error": "#ba1a1a", "primary-fixed-dim": "#ffb3b6", "primary-fixed": "#ffdada", "surface-tint": "#be0037", "on-error-container": "#93000a", "on-secondary": "#ffffff", "secondary-container": "#6cf8bb", "outline-variant": "#e5bdbe", "surface-container": "#e5eeff", "on-secondary-fixed": "#002113", "on-tertiary": "#ffffff", "surface-container-highest": "#d3e4fe", "on-tertiary-container": "#fcfaff", "surface-dim": "#cbdbf5", "secondary-fixed": "#6ffbbe", "surface-bright": "#f8f9ff", "on-background": "#0b1c30", "secondary": "#006c49", "on-primary-fixed-variant": "#920028", "outline": "#906f70", "inverse-primary": "#ffb3b6", "on-surface-variant": "#5c3f40", "on-primary-container": "#fffaf9", "on-error": "#ffffff", "on-tertiary-fixed": "#131b2e", "on-primary": "#ffffff", "inverse-on-surface": "#eaf1ff", "tertiary-container": "#6c738a", "tertiary-fixed": "#dae2fd", "tertiary": "#535b71", "on-surface": "#0b1c30", "inverse-surface": "#213145", "surface": "#f8f9ff", "on-secondary-container": "#00714d" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.75rem", "space-md": "1rem", "space-xs": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "gutter": "1rem", "margin-mobile": "1rem", "space-2xs": "0.25rem", "space-2xl": "3rem" }, fontFamily: { "label-md": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-sm": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "code-mono": ["JetBrains Mono"], "label-lg": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }], "display-lg-mobile": ["28px", { lineHeight: "34px", letterSpacing: "-0.025em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "700" }], "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], "code-mono": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><img alt="PDF Local Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UgTCzrYp0MK4kt2r8N7eAD9DrYUNPWR4rR1w-dVhsds1Anw0WkPQBnK31eT8uD1Kn5EdR8XM8SkPsxwZD_xCAaDbZ54WO4bOeryBpQ5yFiUsANYKnCUbBbIVRHj1hQX_wdeoShrO6iHQrWmoUaFLHYT5xIolJzzIZKpZuXIudUPjbSMOubVf5cjXABwT_AlQnuzUcFY_SSrrYUvM4OlA4vJXF6I-OyPBUINozeo6KGtQ"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">PDF Local</span></div><span class="font-label-sm text-label-sm text-tertiary truncate leading-none">Herramientas</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary border border-secondary/20 shadow-none"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-semibold whitespace-nowrap">100% Local / Sin Internet</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-surface px-margin-mobile"><div class="flex flex-col w-full gap-space-md">
+<!-- Privacy Shield Banner -->
+<section class="w-full bg-secondary-container/20 rounded-2xl p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container/30 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start gap-space-sm relative z-10">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-2xs mb-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            Offline seguro
+          </span>
+<span class="font-code-mono text-code-mono text-secondary font-medium">Sandboxed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium leading-relaxed">
+          Procesamiento 100% en tu dispositivo. Ningún archivo o dato se sube a internet ni a servidores externos.
+        </p>
+</div>
+</div>
+</section>
+<!-- Quick Dropzone Widget -->
+<section class="w-full bg-surface-container-lowest rounded-2xl p-space-md shadow-sm">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0 w-full sm:w-auto">
+<div class="w-11 h-11 rounded-xl bg-primary-fixed/50 text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">upload_file</span>
+</div>
+<div class="min-w-0 flex-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Acceso rápido a PDF</h2>
+<p class="font-body-sm text-body-sm text-tertiary truncate">Abre y procesa al instante sin esperas</p>
+</div>
+</div>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-2xs shadow-sm active:scale-95 transition-transform" id="quickPickBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Elegir PDF</span>
+</button>
+</div>
+</section>
+<!-- Search & Filter Area -->
+<section class="flex flex-col gap-space-sm">
+<!-- Search Bar -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-tertiary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full pl-10 pr-10 py-3 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-tertiary shadow-sm focus:outline-none focus:bg-surface-container-lowest" id="toolSearchInput" placeholder="Buscar herramienta (ej. unir, comprimir...)" type="text"/>
+<button aria-label="Limpiar búsqueda" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-tertiary hover:text-on-surface transition-colors hidden" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-space-2xs overflow-x-auto pb-1 no-scrollbar" id="categoryFilterContainer">
+<button class="filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-primary text-on-primary shadow-xs" data-category="all" type="button">
+        Todos
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface" data-category="organizar" type="button">
+        Organizar
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface" data-category="optimizar" type="button">
+        Optimizar
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface" data-category="seguridad" type="button">
+        Seguridad
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface" data-category="convertir" type="button">
+        Convertir
+      </button>
+</div>
+</section>
+<!-- Tools Grid -->
+<section class="grid grid-cols-2 gap-space-sm" id="toolsGrid">
+<!-- Unir PDFs -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="organizar" data-title="unir pdfs fusionar combinar juntar">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">call_merge</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold whitespace-nowrap shadow-xs">
+          Más usado
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Unir PDFs</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Combina 2 o más archivos en un solo documento</p>
+</div>
+</div>
+<!-- Dividir / Extraer -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="organizar" data-title="dividir extraer separar cortar paginas">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">content_cut</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          Páginas
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Dividir / Extraer</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Separa rangos o extrae páginas específicas</p>
+</div>
+</div>
+<!-- Comprimir -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="optimizar" data-title="comprimir reducir tamaño peso mb kb optimizar">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/40 text-secondary flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]">compress</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/50 text-secondary font-label-sm text-label-sm font-semibold whitespace-nowrap">
+          -80% peso
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Comprimir</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Reduce MB sin perder calidad de lectura</p>
+</div>
+</div>
+<!-- Rotar Páginas -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="organizar" data-title="rotar girar orientacion horizontal vertical 90 180">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">rotate_right</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          90° / 180°
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Rotar Páginas</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Gira hojas individuales o todo el lote</p>
+</div>
+</div>
+<!-- Proteger con Contraseña -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="seguridad" data-title="proteger contrasena cifrado aes clave bloquear seguridad">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/40 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold whitespace-nowrap font-code-mono">
+          AES-256
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Proteger Clave</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Cifra con contraseña robusta local</p>
+</div>
+</div>
+<!-- Desbloquear -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="seguridad" data-title="desbloquear quitar contrasena abrir remover proteccion">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">lock_open</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          Desencriptar
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Desbloquear</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Elimina contraseña y restricciones de copia</p>
+</div>
+</div>
+<!-- Marca de agua -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="seguridad" data-title="marca de agua sello watermark texto logo diagonal">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">branding_watermark</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          Texto/Logo
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Marca de Agua</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Inserta sellos personalizados de seguridad</p>
+</div>
+</div>
+<!-- Numerar páginas -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="organizar" data-title="numerar paginas folio indices 123 pie de pagina">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">format_list_numbered</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          Folios
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Numerar Páginas</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Añade números y estilos de pie de página</p>
+</div>
+</div>
+<!-- Imágenes → PDF -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="convertir" data-title="imagenes a pdf jpg png foto convertir crear">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">photo_library</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold whitespace-nowrap">
+          JPG / PNG
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">Imágenes → PDF</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Crea un documento a partir de fotos</p>
+</div>
+</div>
+<!-- PDF → Imágenes -->
+<div class="tool-card group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all hover:shadow-md" data-category="convertir" data-title="pdf a imagenes exportar png jpg extraer fotos">
+<div class="flex items-start justify-between gap-space-2xs mb-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">image</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm whitespace-nowrap">
+          Exportar
+        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-1">PDF → Imágenes</h3>
+<p class="font-body-sm text-body-sm text-tertiary line-clamp-2">Exporta cada hoja como imagen en alta resolución</p>
+</div>
+</div>
+</section>
+<!-- Empty State when filtering/search yields 0 matches -->
+<div class="hidden flex-col items-center justify-center py-space-xl px-space-md text-center bg-surface-container-lowest rounded-2xl shadow-sm" id="noResultsState">
+<div class="w-14 h-14 rounded-full bg-surface-container-high text-tertiary flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-[30px]">manage_search</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">No se encontraron herramientas</h4>
+<p class="font-body-sm text-body-sm text-tertiary max-w-xs mb-space-md">
+      Prueba con otros términos como 'unir', 'cifrar', 'rotar' o limpia el filtro actual.
+    </p>
+<button class="px-space-md py-2 rounded-xl bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-container-highest transition-colors" id="resetFilterBtn" type="button">
+      Restablecer filtros
+    </button>
+</div>
+<!-- Ambient System Metrics Footer -->
+<section class="w-full bg-surface-container-low rounded-2xl p-space-md shadow-xs flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">memory</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary">Motor WASM Local</span>
+<span class="font-code-mono text-code-mono text-on-surface font-semibold">v2.4.1 (On-Device)</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest shadow-2xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Listo</span>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    const searchInput = document.getElementById('toolSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const toolCards = document.querySelectorAll('.tool-card');
+    const noResults = document.getElementById('noResultsState');
+    const resetBtn = document.getElementById('resetFilterBtn');
+    const quickPickBtn = document.getElementById('quickPickBtn');
+
+    let activeCategory = 'all';
+
+    function filterTools() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      if (query.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      toolCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const keywords = card.getAttribute('data-title').toLowerCase();
+
+        const matchesCat = (activeCategory === 'all') || (cat === activeCategory);
+        const matchesQuery = !query || keywords.includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+        noResults.classList.add('flex');
+      } else {
+        noResults.classList.add('hidden');
+        noResults.classList.remove('flex');
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.className = 'filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface';
+        });
+        btn.className = 'filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-primary text-on-primary shadow-xs';
+        activeCategory = btn.getAttribute('data-category');
+        filterTools();
+      });
+    });
+
+    searchInput.addEventListener('input', filterTools);
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterTools();
+      searchInput.focus();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      activeCategory = 'all';
+      filterButtons.forEach((b, idx) => {
+        if (idx === 0) {
+          b.className = 'filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-primary text-on-primary shadow-xs';
+        } else {
+          b.className = 'filter-pill px-3 py-1.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap bg-surface-container-low text-tertiary hover:text-on-surface';
+        }
+      });
+      filterTools();
+    });
+
+    quickPickBtn.addEventListener('click', () => {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.pdf,application/pdf';
+      fileInput.click();
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] h-12 transition-colors gap-0.5 text-primary font-semibold" data-path="herramientas" href="#"><span class="material-symbols-outlined text-[24px]">dashboard</span><span class="font-label-sm text-label-sm">Herramientas</span></a><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-tertiary hover:text-on-surface transition-colors gap-0.5" data-path="espacio-de-trabajo" href="#"><span class="material-symbols-outlined text-[24px]">folder_open</span><span class="font-label-sm text-label-sm">Espacio</span></a><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-tertiary hover:text-on-surface transition-colors gap-0.5" data-path="historial" href="#"><span class="material-symbols-outlined text-[24px]">history</span><span class="font-label-sm text-label-sm">Historial</span></a><a class="flex flex-col items-center justify-center min-w-[64px] h-12 text-tertiary hover:text-on-surface transition-colors gap-0.5" data-path="ajustes" href="#"><span class="material-symbols-outlined text-[24px]">shield</span><span class="font-label-sm text-label-sm">Ajustes</span></a></div></nav></body></html>

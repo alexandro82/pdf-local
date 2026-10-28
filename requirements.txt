@@ -1,0 +1,8 @@
+flask
+pypdf
+cryptography
+reportlab
+pillow
+pypdfium2
+pdfplumber
+python-docx

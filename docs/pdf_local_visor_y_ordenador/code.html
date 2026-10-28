@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed": "#40000c", "surface-container-low": "#eff4ff", "tertiary-fixed-dim": "#bec6e0", "primary": "#b80035", "on-tertiary-fixed-variant": "#3f465c", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#005236", "surface-container-high": "#dce9ff", "background": "#f8f9ff", "secondary-fixed-dim": "#4edea3", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "primary-container": "#e11d48", "error": "#ba1a1a", "primary-fixed-dim": "#ffb3b6", "primary-fixed": "#ffdada", "surface-tint": "#be0037", "on-error-container": "#93000a", "on-secondary": "#ffffff", "secondary-container": "#6cf8bb", "outline-variant": "#e5bdbe", "surface-container": "#e5eeff", "on-secondary-fixed": "#002113", "on-tertiary": "#ffffff", "surface-container-highest": "#d3e4fe", "on-tertiary-container": "#fcfaff", "surface-dim": "#cbdbf5", "secondary-fixed": "#6ffbbe", "surface-bright": "#f8f9ff", "on-background": "#0b1c30", "secondary": "#006c49", "on-primary-fixed-variant": "#920028", "outline": "#906f70", "inverse-primary": "#ffb3b6", "on-surface-variant": "#5c3f40", "on-primary-container": "#fffaf9", "on-error": "#ffffff", "on-tertiary-fixed": "#131b2e", "on-primary": "#ffffff", "inverse-on-surface": "#eaf1ff", "tertiary-container": "#6c738a", "tertiary-fixed": "#dae2fd", "tertiary": "#535b71", "on-surface": "#0b1c30", "inverse-surface": "#213145", "surface": "#f8f9ff", "on-secondary-container": "#00714d" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.75rem", "space-md": "1rem", "space-xs": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "gutter": "1rem", "margin-mobile": "1rem", "space-2xs": "0.25rem", "space-2xl": "3rem" }, fontFamily: { "label-md": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-sm": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "code-mono": ["JetBrains Mono"], "label-lg": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }], "display-lg-mobile": ["28px", { lineHeight: "34px", letterSpacing: "-0.025em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "700" }], "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], "code-mono": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><button aria-label="Volver" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container-high active:scale-95 transition-all" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><img alt="PDF Local Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UgTCzrYp0MK4kt2r8N7eAD9DrYUNPWR4rR1w-dVhsds1Anw0WkPQBnK31eT8uD1Kn5EdR8XM8SkPsxwZD_xCAaDbZ54WO4bOeryBpQ5yFiUsANYKnCUbBbIVRHj1hQX_wdeoShrO6iHQrWmoUaFLHYT5xIolJzzIZKpZuXIudUPjbSMOubVf5cjXABwT_AlQnuzUcFY_SSrrYUvM4OlA4vJXF6I-OyPBUINozeo6KGtQ"/><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate leading-tight">Editor De Fusion</span><span class="font-label-sm text-label-sm text-tertiary truncate leading-none">PDF Local</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary border border-secondary/20"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-semibold whitespace-nowrap">Offline</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface px-margin-mobile"><div class="flex flex-col w-full pb-28">
+<!-- Top Meta / Status Banner -->
+<div class="flex flex-col gap-space-xs my-space-md">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Unir y ordenar PDFs</h1>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        En RAM local
+      </span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">2 archivos en cola</span>
+<span class="font-code-mono text-code-mono text-tertiary">14 páginas • 4.2 MB total</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-auto">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-highest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors" id="btn-select-all">
+          Seleccionar todo
+        </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-highest text-primary font-label-sm text-label-sm hover:bg-error-container transition-colors" id="btn-clear-selection">
+          Limpiar
+        </button>
+</div>
+</div>
+</div>
+<!-- Reorder Instruction Pill -->
+<div class="flex items-center justify-between mb-space-sm px-1">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+<span class="font-body-sm text-body-sm">Mantén y arrastra para reordenar páginas</span>
+</div>
+<span class="font-code-mono text-code-mono text-tertiary bg-surface-container px-2 py-0.5 rounded-md" id="page-counter-badge">6 de 14 visibles</span>
+</div>
+<!-- Interactive Pages Canvas Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm mb-space-lg" id="pages-grid">
+<!-- Page 1 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="1">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 1</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Clear modern PDF contract document page showing a header logo, structured formal text clauses, and signed signature boxes in monochrome tones with crisp borders on white sheet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADeULB79gbN1K_2jI9-B9tpCUy3HveFXH0C-Lv3nqQM6UwIBWWf1I9tuHFgZNEqV5Q9CJzjePgs-3_EX4_o5rP5iCLlJGahihbwOApPayVKV6WAwd2zTm1TibI9zTDcqQjTrN-0BhLZB5VB9R49cUogW8_jxnCZQTkIdqPxtSDgMYOl4Luit7ZHWmACGRo5Qpkv-1-BWr-aaegZ4y6P25WcYAA8CygPtK3KMgZxey3"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-surface-container-lowest text-[28px] drop-shadow">drag_indicator</span>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Contrato_v2.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Page 2 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="2">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 2</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Technical PDF invoice page with analytical line chart, pricing table columns, tax calculations, and payment terms layout in crisp high contrast paper design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0AGmBDzsG0OppdryuHq5vBsphEkBbyF7VW0wBDbs-WAbvHIgIzLDfBRIu8ff0hc4BIumhZ_vnaqZIWG16ftSEGl9kB6wUvhLME9c3aVM0PM0mpcjP-Rv0ddJwLKdF-VbSMbhnr5IYE2Iep1SOAg3f0QxZC77vdWoh_j03NbnMwz69gNJzN7S-E20QCLSbN3ZFRGL_N0tE49lNqQQEe_Ylp7yhOpy3lugFuawK8Qk2"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-surface-container-lowest text-[28px] drop-shadow">drag_indicator</span>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Contrato_v2.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Page 3 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="3">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 3</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Official identification dossier scan document with verification stamps, official seals, portrait avatar box, and clean tabular metadata on textured safe paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2EhHHE6YsiXm6WZ6WEoO8O5Qk6Rx_K7MZmkucrzXy1rpAXskyBiixe7Dx2JfQBWQj74H2eN1M_ZGtz8P7rkoFKyUXlvIKz3Kgy5Bqu2MTct06yNbk1BEdFz4dt5-79kg0Ubp6pX90MOxX2pRVKT_JJYpJqMyZhvAsRE179JzU55B7-SdxPKP1ZIJ2gSnNQ3loXG2I980zNYZLY3kRWuV-gGTQBOWC9DJyXVhYjhQc"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-surface-container-lowest text-[28px] drop-shadow">drag_indicator</span>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Anexo_A.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Page 4 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="4">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 4</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<div class="w-full h-full bg-surface-container-high p-4 flex flex-col justify-between">
+<div class="h-3 bg-tertiary/20 rounded w-2/3"></div>
+<div class="space-y-2">
+<div class="h-2 bg-tertiary/15 rounded w-full"></div>
+<div class="h-2 bg-tertiary/15 rounded w-5/6"></div>
+<div class="h-2 bg-tertiary/15 rounded w-4/6"></div>
+</div>
+<div class="h-8 bg-surface-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+</div>
+</div>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-surface-container-lowest text-[28px] drop-shadow">drag_indicator</span>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Anexo_A.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Page 5 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="5">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 5</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<div class="w-full h-full bg-surface-container-high p-4 flex flex-col justify-between">
+<div class="flex justify-between items-center">
+<div class="h-3 bg-primary/30 rounded w-1/3"></div>
+<div class="h-3 bg-secondary/30 rounded w-1/4"></div>
+</div>
+<div class="space-y-2">
+<div class="h-2 bg-tertiary/20 rounded w-full"></div>
+<div class="h-2 bg-tertiary/20 rounded w-full"></div>
+<div class="h-2 bg-tertiary/20 rounded w-3/4"></div>
+</div>
+<div class="h-4 bg-tertiary/15 rounded w-1/2"></div>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Anexo_A.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Page 6 Card -->
+<div class="page-card group relative bg-surface-container-lowest rounded-2xl p-space-xs shadow-sm hover:shadow-md transition-all flex flex-col select-none" data-page="6">
+<div class="flex items-center justify-between mb-1.5 px-1">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Pág 6</span>
+<div class="flex items-center gap-1 opacity-90 sm:opacity-70 group-hover:opacity-100 transition-opacity">
+<button class="rotate-btn w-6 h-6 rounded-md bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-transform active:rotate-90" title="Rotar 90°">
+<span class="material-symbols-outlined text-[15px]">rotate_right</span>
+</button>
+<button class="delete-btn w-6 h-6 rounded-md bg-error-container/60 hover:bg-error-container flex items-center justify-center text-error transition-colors" title="Eliminar página">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low flex items-center justify-center">
+<div class="w-full h-full bg-surface-container-high p-4 flex flex-col justify-center items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[26px]">draw</span>
+<div class="h-2 bg-tertiary/20 rounded w-2/3"></div>
+<div class="h-4 bg-primary/20 rounded w-3/4"></div>
+</div>
+</div>
+<div class="mt-1.5 px-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary truncate max-w-[90px]">Anexo_A.pdf</span>
+<span class="font-code-mono text-code-mono text-tertiary">0°</span>
+</div>
+</div>
+<!-- Add More Pages Slot -->
+<button class="relative bg-surface-container-low hover:bg-surface-container rounded-2xl p-space-xs transition-all flex flex-col items-center justify-center aspect-[3/4] text-center active:scale-[0.98]" id="btn-add-pages">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-2 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">note_add</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Añadir páginas</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-1 px-2">PDF o imágenes locales</span>
+</button>
+</div>
+<!-- Security & Encryption Drawer -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-md shadow-sm mb-space-lg transition-all">
+<div class="flex items-center justify-between cursor-pointer" id="security-toggle">
+<div class="flex items-center gap- space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">lock</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface">Cifrado de documento</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-tertiary font-semibold">Opcional</span>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary">Protección AES-256 sin salir del navegador</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary transition-transform" id="drawer-arrow">
+<span class="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Collapsible Content -->
+<div class="hidden mt-space-md pt-space-sm space-y-space-md" id="security-content">
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Requerir contraseña al abrir</span>
+<span class="font-body-sm text-body-sm text-tertiary">El archivo quedará bloqueado ante accesos no autorizados</span>
+</div>
+<!-- Stylized Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="encrypt-switch" type="checkbox"/>
+<div class="w-12 h-7 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="space-y-1.5 opacity-50 pointer-events-none transition-opacity" id="password-field-container">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center justify-between">
+<span>Contraseña maestra</span>
+<span class="font-code-mono text-code-mono text-tertiary">Min. 6 caracteres</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none pr-10" id="doc-password" placeholder="Escribe tu clave segura..." type="password"/>
+<button class="absolute right-3 text-tertiary hover:text-on-surface transition-colors" id="toggle-pwd-vis" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-secondary pt-1">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm">La clave nunca se envía a ningún servidor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-xl p-space-md shadow-lg">
+<div class="max-w-md mx-auto flex flex-col gap-2">
+<div class="flex items-center gap-space-xs">
+<!-- Quick Preview Button -->
+<button class="h-12 px-space-md rounded-xl bg-surface-container-high hover:bg-surface-container text-on-surface flex items-center justify-center gap-1.5 active:scale-95 transition-all" id="btn-preview">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+<span class="font-label-lg text-label-lg whitespace-nowrap">Vista previa</span>
+</button>
+<!-- Primary Action Button -->
+<button class="flex-1 h-12 px-space-md rounded-xl bg-primary-container hover:bg-primary text-on-primary-container font-headline-sm text-headline-sm flex items-center justify-center gap-2 active:scale-[0.98] shadow-md transition-all" id="btn-merge-download">
+<span class="material-symbols-outlined text-[22px]">download_for_offline</span>
+<span class="truncate">Descargar PDF Unido</span>
+</button>
+</div>
+<!-- Privacy Microcopy -->
+<div class="flex items-center justify-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]">offline_bolt</span>
+<span class="font-body-sm text-body-sm text-center">Generado al instante sin conexión a internet</span>
+</div>
+</div>
+</div>
+<!-- Interactive Feedback Toast (Hidden by default) -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity bg-inverse-surface text-inverse-on-surface px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2" id="toast">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
+<span class="font-label-sm text-label-sm" id="toast-message">Acción completada</span>
+</div>
+</div>
+<script>
+  (function() {
+    // Rotating Pages Logic
+    const rotateButtons = document.querySelectorAll('.rotate-btn');
+    rotateButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.page-card');
+        const img = card.querySelector('img, div.aspect-\\[3\\/4\\] > div');
+        const degSpan = card.querySelector('.font-code-mono');
+        let currentDeg = parseInt(card.dataset.rotation || '0', 10);
+        currentDeg = (currentDeg + 90) % 360;
+        card.dataset.rotation = currentDeg;
+        if (img) {
+          img.style.transform = `rotate(${currentDeg}deg)`;
+          img.style.transition = 'transform 0.25s ease';
+        }
+        if (degSpan) {
+          degSpan.textContent = `${currentDeg}°`;
+        }
+        showToast(`Página rotada ${currentDeg}°`);
+      });
+    });
+
+    // Deleting Pages Logic
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.page-card');
+        card.style.transform = 'scale(0.85)';
+        card.style.opacity = '0';
+        setTimeout(() => {
+          card.remove();
+          updatePageNumbers();
+          showToast('Página eliminada del lote');
+        }, 200);
+      });
+    });
+
+    function updatePageNumbers() {
+      const cards = document.querySelectorAll('.page-card');
+      cards.forEach((card, index) => {
+        const badge = card.querySelector('.font-label-sm');
+        if (badge) badge.textContent = `Pág ${index + 1}`;
+      });
+      const counter = document.getElementById('page-counter-badge');
+      if (counter) counter.textContent = `${cards.length} páginas visibles`;
+    }
+
+    // Security Collapsible
+    const secToggle = document.getElementById('security-toggle');
+    const secContent = document.getElementById('security-content');
+    const drawerArrow = document.getElementById('drawer-arrow');
+    secToggle.addEventListener('click', () => {
+      const isHidden = secContent.classList.toggle('hidden');
+      drawerArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // Password Enabled Switch
+    const encryptSwitch = document.getElementById('encrypt-switch');
+    const pwdContainer = document.getElementById('password-field-container');
+    encryptSwitch.addEventListener('change', () => {
+      if (encryptSwitch.checked) {
+        pwdContainer.classList.remove('opacity-50', 'pointer-events-none');
+        document.getElementById('doc-password').focus();
+      } else {
+        pwdContainer.classList.add('opacity-50', 'pointer-events-none');
+      }
+    });
+
+    // Password Visibility Toggle
+    const togglePwd = document.getElementById('toggle-pwd-vis');
+    const pwdInput = document.getElementById('doc-password');
+    togglePwd.addEventListener('click', () => {
+      const isPwd = pwdInput.type === 'password';
+      pwdInput.type = isPwd ? 'text' : 'password';
+      togglePwd.querySelector('span').textContent = isPwd ? 'visibility_off' : 'visibility';
+    });
+
+    // Toast helper
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-message');
+      msg.textContent = text;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    // Action button animations
+    document.getElementById('btn-merge-download').addEventListener('click', () => {
+      showToast('Compilando PDF en WebAssembly local...');
+    });
+
+    document.getElementById('btn-preview').addEventListener('click', () => {
+      showToast('Cargando visor instantáneo...');
+    });
+
+    document.getElementById('btn-add-pages').addEventListener('click', () => {
+      showToast('Selecciona PDFs adicionales');
+    });
+
+    document.getElementById('btn-select-all').addEventListener('click', () => {
+      showToast('Todas las páginas seleccionadas');
+    });
+
+    document.getElementById('btn-clear-selection').addEventListener('click', () => {
+      showToast('Selección restablecida');
+    });
+  })();
+</script></main></body></html>
