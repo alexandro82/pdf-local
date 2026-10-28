@@ -42,6 +42,52 @@ python app.py
 
 Abre **[http://127.0.0.1:5000](http://127.0.0.1:5000)** en tu navegador.
 
+## Acceso desde otros equipos en la red
+
+Para que otros dispositivos de la red accedan a PDF Local, configura **Nginx** como reverse proxy en el puerto 80.
+
+### 1. Instalar Nginx
+
+```bash
+sudo apt install nginx
+```
+
+### 2. Configurar el reverse proxy
+
+```bash
+sudo cp nginx/pdf-local.conf /etc/nginx/sites-available/pdf-local
+sudo ln -s /etc/nginx/sites-available/pdf-local /etc/nginx/sites-enabled/
+sudo nginx -t                          # Verificar configuración
+sudo systemctl restart nginx
+```
+
+Ajusta la IP en `server_name` del archivo de configuración si tu equipo tiene otra dirección.
+
+### 3. Configurar el servicio systemd (opcional)
+
+```bash
+sudo cp nginx/pdf-local.service /etc/systemd/system/
+# Edita las rutas en el servicio según tu instalación
+sudo systemctl daemon-reload
+sudo systemctl enable --now pdf-local
+```
+
+### 4. Abrir el puerto en el firewall
+
+```bash
+sudo ufw allow 80/tcp
+```
+
+### 5. Acceder desde otro equipo
+
+Abre el navegador en cualquier dispositivo de la red y navega a:
+
+```
+http://192.168.0.6
+```
+
+> **Nota de seguridad:** La aplicación escucha en `0.0.0.0`, lo que permite acceso desde la red local. Si necesitas acceso externo, configura autenticación en Nginx o usa HTTPS con Let's Encrypt.
+
 ## Uso
 
 1. Elige una herramienta desde la pantalla principal.
@@ -57,6 +103,9 @@ Todo el procesamiento ocurre en memoria RAM; no se crean archivos temporales en 
 ├── app.py              # Backend Flask: rutas API y lógica de cada herramienta
 ├── static/
 │   └── index.html      # Interfaz: CSS + JS con las 23 herramientas
+├── nginx/
+│   ├── pdf-local.conf  # Configuración de Nginx como reverse proxy
+│   └── pdf-local.service # Servicio systemd para ejecutar en segundo plano
 ├── requirements.txt    # Dependencias Python
 ├── docs/               # Prototipos y guía de diseño
 └── README.md           # Este archivo

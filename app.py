@@ -1,5 +1,5 @@
 """PDF Local: herramientas tipo iLovePDF que corren 100 % en tu equipo.
-Uso: python app.py  ->  http://127.0.0.1:5000
+Uso: python app.py  ->  http://127.0.0.1:5000 (local) o http://<IP>:80 (red, con Nginx)
 """
 import io, os, shutil, subprocess, tempfile, zipfile
 from flask import Flask, request, send_file, jsonify, send_from_directory
@@ -451,4 +451,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000)
+    app.run(host="0.0.0.0", port=5000)

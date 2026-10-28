@@ -1,0 +1,15 @@
+[Unit]
+Description=PDF Local - Offline PDF Tools
+After=network.target
+
+[Service]
+Type=simple
+User=alex
+WorkingDirectory=/home/alex/Descargas/pdf-local
+Environment="PATH=/home/alex/Descargas/pdf-local/.venv/bin"
+ExecStart=/home/alex/Descargas/pdf-local/.venv/bin/python app.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
